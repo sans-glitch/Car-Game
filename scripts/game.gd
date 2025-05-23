@@ -1,13 +1,21 @@
 extends Node3D
 
 var city_grid : Array
+var started : bool = false
+signal start
 
 func _ready() -> void:
 	generate_maze(10, 10)
+	CheckpointManager.reset()
+	start.connect(_on_race_start)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("restart"):
 		get_tree().reload_current_scene()
+
+func _on_race_start():
+	started = true
+	Stopwatch.reset_and_start()
 
 func generate_maze(width: int, height: int) -> void:
 	# Generates empty grid

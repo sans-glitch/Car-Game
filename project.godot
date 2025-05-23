@@ -15,6 +15,11 @@ run/main_scene="uid://ca0xf17k4itl7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CheckpointManager="*res://scripts/checkpoint_manager.gd"
+Stopwatch="*res://scripts/timer.gd"
+
 [input]
 
 accelerate={

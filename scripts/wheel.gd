@@ -124,7 +124,7 @@ func suspension(delta, collision_point):
 		#print(spring_length)
 	
 	grip = ((car.suspension_rest_dist - spring_length)) * car.grip_mult + car.min_grip
-	print(grip)
+	#print(grip)
 	previous_spring_length = spring_length
 	
 	var point = Vector3(raycast_dest.x, raycast_dest.y + car.wheel_radius, raycast_dest.z)
