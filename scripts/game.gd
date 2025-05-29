@@ -1,13 +1,17 @@
 extends Node3D
 
+@export var course_num = 0
 var city_grid : Array
 var started : bool = false
 signal start
 
 func _ready() -> void:
-	generate_maze(10, 10)
+	Stopwatch.stopped = true
+	place_car()
+	#generate_maze(10, 10)
 	CheckpointManager.reset()
 	start.connect(_on_race_start)
+	CheckpointManager.finished.connect(finished)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("restart"):
@@ -38,4 +42,15 @@ func generate_maze(width: int, height: int) -> void:
 		print(vert_string)
 		print("")
 			
-			
+func finished():
+	$Overhead.current = true
+	await get_tree().create_timer(3).timeout
+	get_tree().reload_current_scene()
+
+func place_car():
+	if course_num == 0:
+		$Car.position = Vector3(0, 3, 28.556)
+		$Car.rotation = Vector3(0, -PI/2, 0)
+	else:
+		$Car.position = Vector3(-379, 2, -210)
+		$Car.rotation = Vector3(0, -PI/2, 0)

@@ -2,18 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://c41a7s1qr1opf" path="res://scenes/car.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://bcnvqevk2o0ft" path="res://scripts/game.gd" id="1_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://d3qob1khttvb2" path="res://icon.svg" id="2_lnu2h"]
 [ext_resource type="MeshLibrary" uid="uid://b7bbgjxktv6o2" path="res://assets/road_mesh_lib.tres" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://fm35x4s2d14w" path="res://scenes/checkpoint.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://d1asdnt4k22n0" path="res://scenes/time_overlay.tscn" id="6_p57ef"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8cj0n"]
 size = Vector2(20, 20)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
-albedo_texture = ExtResource("2_lnu2h")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
+albedo_color = Color(0, 0.33, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_yqjtg"]
-material = SubResource("StandardMaterial3D_lbhrr")
+material = SubResource("StandardMaterial3D_iywne")
 size = Vector3(1000, 0.1, 1000)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_u5sy4"]
@@ -40,6 +40,7 @@ data = PackedVector3Array(5, 2.5, 2.5, 5, -2.5, 2.5, -5, -2.5, 2.5, 5, 2.5, -2.5
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_yqjtg")
+course_num = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -55,7 +56,7 @@ mesh = SubResource("BoxMesh_yqjtg")
 shape = SubResource("ConcavePolygonShape3D_u5sy4")
 
 [node name="Car" parent="." groups=["Car"] instance=ExtResource("1_uwrxv")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3, 28.5564)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -379, 2, -210.035)
 mass = 1000.0
 suspension_rest_dist = 0.2
 spring_strength = 30000.0
@@ -73,8 +74,8 @@ friction_denom = 30.0
 transform = Transform3D(1, -4.37114e-08, -1.36966e-08, 4.47035e-08, 0.866025, 0.5, -9.99407e-09, -0.5, 0.866025, 0, 2.6755, 3)
 current = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -3.19744e-14, -8.74228e-08, -6.18172e-08, 0.707107, 0.707107, 6.18172e-08, 0.707107, -0.707107, 0, 10, -13)
+[node name="Overhead" type="Camera3D" parent="."]
+transform = Transform3D(-1, 1.01371e-13, -8.74225e-08, -8.74225e-08, 5.96046e-08, 1, 1.06581e-13, 1, -5.96046e-08, -175.795, 237.568, -180.076)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
@@ -116,7 +117,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 mesh_library = ExtResource("4_lbhrr")
 cell_size = Vector3(40, 2, 40)
 data = {
-"cells": PackedInt32Array(65535, 0, 1441797, 0, 0, 1441792, 65534, 0, 1441797, 65533, 0, 1441797, 0, 1, 655365, 0, 2, 655365, 0, 3, 655365, 0, 4, 655360, 65535, 4, 1048581, 65534, 4, 1048581, 65533, 4, 1048581, 65532, 4, 1048576, 65532, 3, 5, 65532, 2, 5, 65532, 1, 5, 65532, 0, 0)
+"cells": PackedInt32Array(65535, 0, 1441797, 0, 0, 1441792, 65534, 0, 1441797, 65533, 0, 1441797, 0, 1, 655365, 0, 2, 655365, 0, 3, 655365, 0, 4, 655360, 65535, 4, 1048581, 65534, 4, 1048581, 65533, 4, 1048581, 65532, 4, 1048576, 65532, 3, 5, 65532, 2, 5, 65532, 1, 5, 65532, 0, 0, 65529, 65532, 1048578, 65530, 65532, 1048581, 65531, 65532, 1048581, 65532, 65532, 1048581, 65533, 65532, 655360, 65533, 65531, 5, 65533, 65530, 0, 65534, 65530, 1441797, 65535, 65530, 1441792, 65535, 65531, 655360, 65534, 65531, 0, 65534, 65532, 4, 65534, 65533, 4, 65534, 65534, 4, 65534, 65535, 655360, 65533, 65535, 1048580, 65532, 65535, 1048580, 65531, 65535, 1048580, 65530, 65535, 1048576, 65530, 65534, 0, 65531, 65534, 655360, 65531, 65533, 1441792, 65530, 65533, 1441797, 65529, 65533, 1048578)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -130,3 +131,16 @@ checkpoint_number = 1
 [node name="Checkpoint3" parent="." instance=ExtResource("5_iywne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8131, 0.75, 176.618)
 checkpoint_number = 2
+
+[node name="TimeOverlay" parent="." instance=ExtResource("6_p57ef")]
+
+[node name="Checkpoint4" parent="." instance=ExtResource("5_iywne")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -212.303, 0.750015, -209.893)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("5_iywne")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -389.719, 0.75, -149.639)
+checkpoint_number = 2
+
+[node name="Checkpoint6" parent="." instance=ExtResource("5_iywne")]
+transform = Transform3D(0.682432, 0, -0.730949, 0, 1, 0, 0.730949, 0, 0.682432, -98.9666, 1.49462, -38.6729)
+checkpoint_number = 1

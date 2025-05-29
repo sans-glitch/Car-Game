@@ -20,7 +20,6 @@ var accel_input
 var steering_input
 
 func _process(delta: float) -> void:
-	
 	if not get_parent().started and Input.is_action_pressed("accelerate"):
 		get_parent().start.emit()
 	
@@ -73,12 +72,19 @@ func anti_roll():
 	
 	var left_avg_force = (fl_wheel.susp_force.length() + bl_wheel.susp_force.length())/2
 	var right_avg_force = (fr_wheel.susp_force.length() + br_wheel.susp_force.length())/2
-	
-	var anti_roll_force = Vector3((left_avg_force-right_avg_force), 0,0) * 15
+	var force_diff = left_avg_force - right_avg_force
+	#if abs(force_diff) < 50:
+		#force_diff = 0
+	print(force_diff)
+	var anti_roll_force = Vector3((force_diff), 0,0) * 15
 	anti_roll_force = anti_roll_force.clampf(-10000, 10000)
 	var force_position = Vector3(0, 0, 0)
 	#print("anti: " + str(anti_roll_force.length()))
-	apply_force(to_global(anti_roll_force), force_position)
+	#anti_roll_force = Vector3(1, 0, 0)
+	anti_roll_force = anti_roll_force.rotated(Vector3(1, 0, 0), global_rotation.x).rotated(Vector3(0, 0, 1), global_rotation.z).rotated(Vector3(0, 1, 0), global_rotation.y)
+
+	#anti_roll_force = to_local(anti_roll_force)
+	apply_force((anti_roll_force), force_position)
 	
 	if debug:
-		DebugDraw3D.draw_arrow(to_global(force_position), to_global(force_position) + to_global(anti_roll_force), Color.VIOLET, 0.1, true)
+		DebugDraw3D.draw_arrow(to_global(force_position), to_global(force_position) + anti_roll_force, Color.VIOLET, 0.1, true)

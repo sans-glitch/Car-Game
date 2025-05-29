@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1asdnt4k22n0"]
+
+[ext_resource type="Script" uid="uid://b31nk7rq1wvie" path="res://scripts/time_overlay.gd" id="1_ic4dm"]
+
+[node name="TimeOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ic4dm")
+
+[node name="Bar" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Bar"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = 132.0
+offset_right = 1181.0
+offset_bottom = 229.0
+color = Color(0, 0, 0, 0.294118)
+
+[node name="Label" type="Label" parent="Bar"]
+layout_mode = 0
+offset_top = 133.0
+offset_right = 1153.0
+offset_bottom = 242.0
+theme_override_font_sizes/font_size = 32
+text = "00:00.000
++00:00.000"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 589.0
+offset_right = 671.0
+offset_bottom = 638.0
+color = Color(0, 0.329412, 0, 1)
+
+[node name="Timer" type="Label" parent="."]
+offset_top = 589.0
+offset_right = 1153.0
+offset_bottom = 646.0
+theme_override_font_sizes/font_size = 32
+text = "00:00.000"
+horizontal_alignment = 1
