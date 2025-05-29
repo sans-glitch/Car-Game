@@ -62,7 +62,6 @@ suspension_rest_dist = 0.2
 spring_strength = 30000.0
 spring_damper = 500.0
 wheel_radius = 0.25
-debug = true
 engine_power = 2500.0
 front_tire_grip = 0.5
 rear_tire_grip = 0.2
@@ -142,5 +141,5 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -389.7
 checkpoint_number = 2
 
 [node name="Checkpoint6" parent="." instance=ExtResource("5_iywne")]
-transform = Transform3D(0.682432, 0, -0.730949, 0, 1, 0, 0.730949, 0, 0.682432, -98.9666, 1.49462, -38.6729)
+transform = Transform3D(0.682432, 0, -0.730949, 0, 1, 0, 0.730949, 0, 0.682432, -98.967, 0.75, -38.673)
 checkpoint_number = 1

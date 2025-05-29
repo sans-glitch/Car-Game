@@ -75,7 +75,7 @@ func anti_roll():
 	var force_diff = left_avg_force - right_avg_force
 	#if abs(force_diff) < 50:
 		#force_diff = 0
-	print(force_diff)
+	#print(force_diff)
 	var anti_roll_force = Vector3((force_diff), 0,0) * 15
 	anti_roll_force = anti_roll_force.clampf(-10000, 10000)
 	var force_position = Vector3(0, 0, 0)
